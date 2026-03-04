@@ -193,19 +193,35 @@ function renderPlan() {
   });
 }
 
+function recipeImageUrl(r) {
+  const STOP_WORDS = new Set(['and','with','the','in','a','of','&','on']);
+  const keyword = r.name.toLowerCase()
+    .replace(/[^a-z\s]/g, '')
+    .split(/\s+/)
+    .filter(w => w && !STOP_WORDS.has(w))
+    .slice(0, 2)
+    .join(',');
+  // loremflickr: free, active service; lock=id keeps each recipe's image consistent
+  return `https://loremflickr.com/88/130/food,${encodeURIComponent(keyword)}?lock=${r.id}`;
+}
+
 function recipeCardMini(r, day) {
   const mins = totalMins(r);
   const dietTag = r.tags[0];
+  const imgUrl = recipeImageUrl(r);
   return `<div class="recipe-card-mini" data-id="${r.id}" data-day="${day}">
-    <div class="recipe-title">${r.name}</div>
-    <div class="recipe-meta"><span>⏱ ${mins} min</span><span>👤 ${r.servings} srv</span></div>
-    <div class="recipe-tags">
-      <span class="tag diet">${dietTag}</span>
-      ${r.tags.includes('gluten-free') ? '<span class="tag restriction">GF</span>' : ''}
+    <div class="recipe-card-body">
+      <div class="recipe-title">${r.name}</div>
+      <div class="recipe-meta"><span>⏱ ${mins} min</span><span>👤 ${r.servings} srv</span></div>
+      <div class="recipe-tags">
+        <span class="tag diet">${dietTag}</span>
+        ${r.tags.includes('gluten-free') ? '<span class="tag restriction">GF</span>' : ''}
+      </div>
+      <div class="recipe-card-actions">
+        <button class="btn-swap" title="Swap this recipe">🔄 Swap</button>
+      </div>
     </div>
-    <div class="recipe-card-actions">
-      <button class="btn-swap" title="Swap this recipe">🔄 Swap</button>
-    </div>
+    <img class="recipe-card-image" src="${imgUrl}" alt="${r.name}" loading="lazy" onerror="this.style.display='none'" />
   </div>`;
 }
 
