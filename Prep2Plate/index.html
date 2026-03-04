@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🥗 Meal Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-brand">🥗 Meal Planner</div>
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="quiz">📋 Quiz</button>
+      <button class="tab-btn" data-tab="plan">📅 Weekly Plan</button>
+      <button class="tab-btn" data-tab="shopping">🛒 Shopping List</button>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <!-- ══════════ QUIZ SECTION ══════════ -->
+    <section id="quiz-section" class="section active">
+      <div class="quiz-container">
+        <div class="quiz-header">
+          <h1>Let's personalise your meal plan</h1>
+          <p class="quiz-subtitle">Answer a few quick questions and we'll build your perfect weekly menu.</p>
+        </div>
+        <div class="step-indicator">
+          <div class="step-dot active" data-step="1"><span>1</span></div>
+          <div class="step-line" id="line-1-2"></div>
+          <div class="step-dot" data-step="2"><span>2</span></div>
+          <div class="step-line" id="line-2-3"></div>
+          <div class="step-dot" data-step="3"><span>3</span></div>
+          <div class="step-line" id="line-3-4"></div>
+          <div class="step-dot" data-step="4"><span>4</span></div>
+        </div>
+
+        <!-- Step 1: People & Meals -->
+        <div class="quiz-step" id="step-1">
+          <h2>👥 People &amp; Meals</h2>
+          <div class="slider-group">
+            <label>Number of people <span class="slider-val" id="people-val">2</span></label>
+            <input type="range" id="num-people" min="1" max="10" value="2" class="slider" />
+            <div class="slider-labels"><span>1 person</span><span>10 people</span></div>
+          </div>
+          <div class="slider-group">
+            <label>Meals per week <span class="slider-val" id="meals-val">7</span></label>
+            <input type="range" id="meals-per-week" min="3" max="21" value="7" class="slider" />
+            <div class="slider-labels"><span>3 meals</span><span>21 meals</span></div>
+          </div>
+        </div>
+
+        <!-- Step 2: Diet Type -->
+        <div class="quiz-step hidden" id="step-2">
+          <h2>🍽️ Diet Type</h2>
+          <p class="step-hint">Select the option that best describes your eating style.</p>
+          <div class="diet-cards">
+            <label class="diet-card"><input type="radio" name="diet" value="omnivore" checked /><span class="diet-icon">🥩</span><span class="diet-label">Omnivore</span></label>
+            <label class="diet-card"><input type="radio" name="diet" value="vegetarian" /><span class="diet-icon">🥗</span><span class="diet-label">Vegetarian</span></label>
+            <label class="diet-card"><input type="radio" name="diet" value="vegan" /><span class="diet-icon">🌱</span><span class="diet-label">Vegan</span></label>
+            <label class="diet-card"><input type="radio" name="diet" value="pescatarian" /><span class="diet-icon">🐟</span><span class="diet-label">Pescatarian</span></label>
+            <label class="diet-card"><input type="radio" name="diet" value="keto" /><span class="diet-icon">🥑</span><span class="diet-label">Keto</span></label>
+            <label class="diet-card"><input type="radio" name="diet" value="paleo" /><span class="diet-icon">🍖</span><span class="diet-label">Paleo</span></label>
+            <label class="diet-card"><input type="radio" name="diet" value="mediterranean" /><span class="diet-icon">🫒</span><span class="diet-label">Mediterranean</span></label>
+            <label class="diet-card"><input type="radio" name="diet" value="low-carb" /><span class="diet-icon">🥦</span><span class="diet-label">Low-Carb</span></label>
+          </div>
+        </div>
+
+        <!-- Step 3: Allergies -->
+        <div class="quiz-step hidden" id="step-3">
+          <h2>⚠️ Allergies</h2>
+          <p class="step-hint">Select any ingredients you must avoid completely. Leave blank if none.</p>
+          <div class="checkbox-grid">
+            <label class="check-item"><input type="checkbox" class="allergy-cb" value="peanuts" /><span class="check-icon">🥜</span> Peanuts</label>
+            <label class="check-item"><input type="checkbox" class="allergy-cb" value="tree-nuts" /><span class="check-icon">🌰</span> Tree Nuts</label>
+            <label class="check-item"><input type="checkbox" class="allergy-cb" value="dairy" /><span class="check-icon">🥛</span> Dairy</label>
+            <label class="check-item"><input type="checkbox" class="allergy-cb" value="egg" /><span class="check-icon">🥚</span> Eggs</label>
+            <label class="check-item"><input type="checkbox" class="allergy-cb" value="shellfish" /><span class="check-icon">🦐</span> Shellfish</label>
+            <label class="check-item"><input type="checkbox" class="allergy-cb" value="fish" /><span class="check-icon">🐟</span> Fish</label>
+            <label class="check-item"><input type="checkbox" class="allergy-cb" value="soy" /><span class="check-icon">🫘</span> Soy</label>
+            <label class="check-item"><input type="checkbox" class="allergy-cb" value="gluten" /><span class="check-icon">🌾</span> Gluten / Wheat</label>
+            <label class="check-item"><input type="checkbox" class="allergy-cb" value="sesame" /><span class="check-icon">🌿</span> Sesame</label>
+          </div>
+        </div>
+
+        <!-- Step 4: Restrictions -->
+        <div class="quiz-step hidden" id="step-4">
+          <h2>🚫 Dietary Restrictions</h2>
+          <p class="step-hint">Any specific rules your meals must follow? Leave blank if none.</p>
+          <div class="checkbox-grid">
+            <label class="check-item"><input type="checkbox" class="restrict-cb" value="halal" /><span class="check-icon">☪️</span> Halal</label>
+            <label class="check-item"><input type="checkbox" class="restrict-cb" value="kosher" /><span class="check-icon">✡️</span> Kosher</label>
+            <label class="check-item"><input type="checkbox" class="restrict-cb" value="pork-free" /><span class="check-icon">🐷</span> Pork-Free</label>
+            <label class="check-item"><input type="checkbox" class="restrict-cb" value="no-beef" /><span class="check-icon">🐄</span> No Beef</label>
+            <label class="check-item"><input type="checkbox" class="restrict-cb" value="veg-only" /><span class="check-icon">🌿</span> Veg-Only</label>
+            <label class="check-item"><input type="checkbox" class="restrict-cb" value="gluten-free" /><span class="check-icon">🌾</span> Gluten-Free</label>
+            <label class="check-item"><input type="checkbox" class="restrict-cb" value="lactose-free" /><span class="check-icon">🥛</span> Lactose-Free</label>
+            <label class="check-item"><input type="checkbox" class="restrict-cb" value="low-sodium" /><span class="check-icon">🧂</span> Low-Sodium</label>
+          </div>
+        </div>
+
+        <div class="quiz-nav">
+          <button id="prev-btn" class="btn btn-secondary" style="visibility:hidden">← Back</button>
+          <button id="next-btn" class="btn btn-primary">Next →</button>
+          <button id="generate-btn" class="btn btn-generate hidden">✨ Generate My Plan</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ PLAN SECTION ══════════ -->
+    <section id="plan-section" class="section hidden">
+      <div class="section-header">
+        <div class="section-title-row">
+          <h2>📅 Your Weekly Meal Plan</h2>
+          <div class="plan-controls">
+            <label class="toggle-label"><input type="checkbox" id="allow-repeats" /> Allow repeats</label>
+            <button id="regenerate-btn" class="btn btn-secondary">🔄 Regenerate</button>
+            <button id="go-shopping-btn" class="btn btn-primary">🛒 View Shopping List</button>
+          </div>
+        </div>
+        <p id="plan-summary" class="plan-summary"></p>
+        <div id="fallback-notice" class="notice hidden"></div>
+      </div>
+      <div id="plan-grid" class="plan-grid"></div>
+    </section>
+
+    <!-- ══════════ SHOPPING LIST SECTION ══════════ -->
+    <section id="shopping-section" class="section hidden">
+      <div class="section-header">
+        <div class="section-title-row">
+          <h2>🛒 Shopping List</h2>
+          <div class="plan-controls">
+            <button id="export-btn" class="btn btn-secondary">📄 Export as Text</button>
+            <button id="go-plan-btn" class="btn btn-secondary">← Back to Plan</button>
+          </div>
+        </div>
+        <p id="shopping-summary" class="plan-summary"></p>
+      </div>
+      <div id="shopping-list" class="shopping-list-container"></div>
+    </section>
+
+  </main>
+
+  <!-- Recipe Detail Modal -->
+  <div id="recipe-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="js/recipes.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,175 @@
+/* ── CSS Custom Properties ── */
+:root {
+  --primary: #FF6B35;
+  --primary-dark: #E85D2A;
+  --secondary: #2C5F2E;
+  --accent: #FFD166;
+  --bg: #FAFAF8;
+  --card-bg: #FFFFFF;
+  --text: #2D2D2D;
+  --text-muted: #6B7280;
+  --border: #E5E7EB;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-hover: 0 6px 20px rgba(0,0,0,0.14);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --transition: 0.2s ease;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+button { cursor: pointer; font-family: inherit; }
+input[type="checkbox"], input[type="radio"] { accent-color: var(--primary); }
+a { color: var(--primary); }
+
+/* ── Nav ── */
+.nav { display: flex; align-items: center; justify-content: space-between; background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 64px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+.nav-brand { font-size: 1.3rem; font-weight: 700; color: var(--primary); letter-spacing: -0.3px; }
+.nav-tabs { display: flex; gap: 0.4rem; }
+.tab-btn { padding: 0.45rem 1rem; border: none; background: none; border-radius: 30px; color: var(--text-muted); font-size: 0.88rem; font-weight: 500; transition: var(--transition); }
+.tab-btn:hover { background: var(--bg); color: var(--text); }
+.tab-btn.active { background: var(--primary); color: white; }
+
+/* ── Main & Sections ── */
+.main { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+.section { display: none; }
+.section.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── Quiz Container ── */
+.quiz-container { max-width: 680px; margin: 0 auto; }
+.quiz-header { text-align: center; margin-bottom: 2rem; }
+.quiz-header h1 { font-size: 2rem; color: var(--text); margin-bottom: 0.5rem; }
+.quiz-subtitle { color: var(--text-muted); font-size: 1.05rem; }
+
+/* ── Step Indicator ── */
+.step-indicator { display: flex; align-items: center; justify-content: center; margin-bottom: 2.5rem; }
+.step-dot { width: 38px; height: 38px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: var(--text-muted); transition: var(--transition); flex-shrink: 0; }
+.step-dot.active { background: var(--primary); color: white; box-shadow: 0 0 0 4px rgba(255,107,53,0.2); }
+.step-dot.completed { background: var(--secondary); color: white; }
+.step-line { flex: 1; max-width: 80px; height: 3px; background: var(--border); transition: background 0.3s ease; }
+.step-line.completed { background: var(--secondary); }
+
+/* ── Quiz Step ── */
+.quiz-step h2 { font-size: 1.5rem; margin-bottom: 1.25rem; color: var(--text); }
+.step-hint { color: var(--text-muted); margin-bottom: 1.25rem; font-size: 0.95rem; }
+.hidden { display: none !important; }
+
+/* ── Sliders ── */
+.slider-group { margin-bottom: 2rem; }
+.slider-group label { display: block; font-weight: 600; font-size: 1rem; margin-bottom: 0.75rem; }
+.slider-val { display: inline-block; background: var(--primary); color: white; border-radius: 20px; padding: 0.1rem 0.65rem; font-size: 0.88rem; margin-left: 0.5rem; }
+.slider { width: 100%; height: 6px; border-radius: 3px; appearance: none; -webkit-appearance: none; background: var(--border); outline: none; cursor: pointer; }
+.slider::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; background: var(--primary); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 6px rgba(255,107,53,0.4); transition: transform 0.15s; }
+.slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+.slider-labels { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted); }
+
+/* ── Diet Cards ── */
+.diet-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.75rem; }
+.diet-card { cursor: pointer; border: 2px solid var(--border); border-radius: var(--radius); padding: 1rem 0.75rem; text-align: center; transition: var(--transition); background: var(--card-bg); display: block; }
+.diet-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.diet-card input[type="radio"] { display: none; }
+.diet-card:has(input:checked) { border-color: var(--primary); background: #FFF4F0; box-shadow: 0 0 0 3px rgba(255,107,53,0.15); }
+.diet-icon { display: block; font-size: 2.2rem; margin-bottom: 0.5rem; }
+.diet-label { font-weight: 600; font-size: 0.88rem; color: var(--text); }
+
+/* ── Checkbox Grid ── */
+.checkbox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.75rem; }
+.check-item { display: flex; align-items: center; gap: 0.6rem; border: 2px solid var(--border); border-radius: var(--radius-sm); padding: 0.75rem; cursor: pointer; transition: var(--transition); background: var(--card-bg); font-weight: 500; font-size: 0.9rem; }
+.check-item:hover { border-color: var(--primary); }
+.check-item:has(input:checked) { border-color: var(--primary); background: #FFF4F0; }
+.check-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+/* ── Quiz Nav ── */
+.quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 2.5rem; gap: 1rem; }
+
+/* ── Buttons ── */
+.btn { padding: 0.7rem 1.4rem; border-radius: 30px; font-weight: 600; font-size: 0.95rem; border: none; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.4rem; }
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255,107,53,0.3); }
+.btn-secondary { background: var(--card-bg); border: 2px solid var(--border); color: var(--text); }
+.btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+.btn-generate { background: linear-gradient(135deg, #FF6B35, #FF8C5A); color: white; padding: 0.85rem 2rem; font-size: 1rem; box-shadow: 0 4px 14px rgba(255,107,53,0.35); }
+.btn-generate:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,107,53,0.45); }
+.btn-swap { background: none; border: 1px solid var(--border); border-radius: 20px; padding: 0.25rem 0.65rem; font-size: 0.75rem; color: var(--text-muted); transition: var(--transition); }
+.btn-swap:hover { border-color: var(--primary); color: var(--primary); }
+
+/* ── Section Headers ── */
+.section-header { margin-bottom: 2rem; }
+.section-title-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.6rem; }
+.section-title-row h2 { font-size: 1.75rem; font-weight: 700; }
+.plan-controls { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.toggle-label { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; font-size: 0.9rem; font-weight: 500; }
+.plan-summary { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.25rem; }
+.notice { background: #FFFBEB; border: 1px solid #FCD34D; border-radius: var(--radius-sm); padding: 0.7rem 1rem; font-size: 0.88rem; color: #92400E; margin-top: 0.6rem; }
+
+/* ── Plan Grid ── */
+.plan-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.9rem; margin-top: 0.5rem; }
+@media (max-width: 1100px) { .plan-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 700px) { .plan-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 400px) { .plan-grid { grid-template-columns: 1fr; } }
+
+/* ── Day Card ── */
+.day-card { background: var(--card-bg); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+.day-header { background: var(--primary); color: white; padding: 0.55rem 0.75rem; font-weight: 700; font-size: 0.82rem; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; }
+.day-meals { flex: 1; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.day-empty { padding: 1rem 0.75rem; text-align: center; color: var(--text-muted); font-size: 0.82rem; font-style: italic; }
+
+/* ── Recipe Card (mini, in plan) ── */
+.recipe-card-mini { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.65rem; background: var(--bg); cursor: pointer; transition: var(--transition); }
+.recipe-card-mini:hover { border-color: var(--primary); box-shadow: var(--shadow-hover); transform: translateY(-1px); }
+.recipe-title { font-weight: 600; font-size: 0.83rem; line-height: 1.3; margin-bottom: 0.35rem; color: var(--text); }
+.recipe-meta { display: flex; gap: 0.4rem; flex-wrap: wrap; font-size: 0.73rem; color: var(--text-muted); margin-bottom: 0.35rem; }
+.recipe-tags { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-bottom: 0.4rem; }
+.tag { border-radius: 20px; padding: 0.1rem 0.5rem; font-size: 0.68rem; font-weight: 500; }
+.tag.diet { background: #D1FAE5; color: #065F46; }
+.tag.restriction { background: #EDE9FE; color: #4C1D95; }
+.recipe-card-actions { display: flex; justify-content: flex-end; margin-top: 0.3rem; }
+
+/* ── Shopping List ── */
+.shopping-list-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.25rem; }
+.category-card { background: var(--card-bg); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; }
+.category-header { padding: 0.7rem 1rem; background: var(--secondary); color: white; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+.category-items { padding: 0.5rem 1rem; }
+.shopping-item { display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+.shopping-item:last-child { border-bottom: none; }
+.shopping-item-name { font-weight: 500; text-transform: capitalize; }
+.shopping-item-qty { color: var(--text-muted); font-size: 0.82rem; white-space: nowrap; margin-left: 0.5rem; }
+
+/* ── Modal ── */
+.modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; }
+.modal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.52); backdrop-filter: blur(2px); }
+.modal-content { position: relative; background: var(--card-bg); border-radius: var(--radius); max-width: 620px; width: 92vw; max-height: 88vh; overflow-y: auto; padding: 2rem; box-shadow: 0 20px 50px rgba(0,0,0,0.25); }
+.modal-close { position: absolute; top: 1rem; right: 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 50%; width: 32px; height: 32px; font-size: 1rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.modal-close:hover { background: #FEE2E2; border-color: #FCA5A5; color: #DC2626; }
+.modal-recipe-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; padding-right: 2rem; }
+.modal-desc { color: var(--text-muted); margin-bottom: 1rem; font-size: 0.95rem; }
+.modal-meta { display: flex; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.modal-meta-item { background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 0.35rem 0.8rem; font-size: 0.85rem; font-weight: 500; }
+.modal-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem; }
+.modal-section-title { font-weight: 700; font-size: 1rem; margin: 1.25rem 0 0.6rem; border-bottom: 2px solid var(--border); padding-bottom: 0.35rem; }
+.ingredient-list { list-style: none; }
+.ingredient-item { display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+.ingredient-item:last-child { border-bottom: none; }
+.ingredient-name { font-weight: 500; text-transform: capitalize; }
+.ingredient-qty { color: var(--text-muted); font-size: 0.83rem; }
+.step-list { padding-left: 1.3rem; }
+.step-item { margin-bottom: 0.75rem; font-size: 0.9rem; line-height: 1.55; }
+.modal-note { background: #FFFBEB; border-left: 4px solid #FCD34D; padding: 0.75rem 1rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 0.85rem; color: #78350F; margin-top: 1.25rem; }
+
+/* ── No Results Banner ── */
+.no-results { text-align: center; padding: 3rem 2rem; color: var(--text-muted); }
+.no-results .emoji { font-size: 3rem; margin-bottom: 1rem; }
+.no-results h3 { font-size: 1.2rem; color: var(--text); margin-bottom: 0.5rem; }
+
+/* ── Responsive Nav ── */
+@media (max-width: 600px) {
+  .nav { padding: 0 1rem; }
+  .nav-brand { font-size: 1rem; }
+  .tab-btn { padding: 0.4rem 0.65rem; font-size: 0.8rem; }
+  .main { padding: 1.5rem 1rem; }
+  .quiz-header h1 { font-size: 1.5rem; }
+  .section-title-row { flex-direction: column; align-items: flex-start; }
+}
+
